@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "2025 Global Box Office Top 5",
+    "subtitle": "The era of blockbuster sequels and IP adaptations (Billions USD)",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 15
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/top_films.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "Film",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "tickCount": 0,
+        "domain": false
+      }
+    },
+    "x": {
+      "field": "BoxOffice_Billions",
+      "type": "quantitative",
+      "title": "Global Box Office (Billions USD)",
+      "axis": {
+        "grid": true,
+        "labelFontSize": 11
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#bdc3c7",
+        "size": 3
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 400,
+        "color": "#e74c3c",
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {"field": "Film", "type": "nominal", "title": "Film Title"},
+          {"field": "BoxOffice_Billions", "type": "quantitative", "title": "Box Office ($B)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 15,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "BoxOffice_Billions",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      }
+    }
+  ]
+}
