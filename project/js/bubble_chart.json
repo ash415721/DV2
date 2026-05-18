@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 400,
+  "title": {
+    "text": "Post-Production Workforce Analysis",
+    "subtitle": "Employment size vs. Salary vs. Revenue generation by role",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 15
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/workforce_data.csv"
+  },
+  "params": [
+    {
+      "name": "hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "stroke": "#2c3e50",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "Employees",
+      "type": "quantitative",
+      "title": "Number of Professionals",
+      "scale": {"zero": false, "padding": 20},
+      "axis": {"grid": true, "labelFontSize": 12, "titleFontSize": 13}
+    },
+    "y": {
+      "field": "Avg_Salary_AUD",
+      "type": "quantitative",
+      "title": "Average Salary (AUD)",
+      "scale": {"zero": false, "padding": 20},
+      "axis": {"grid": true, "labelFontSize": 12, "titleFontSize": 13, "format": "$,"}
+    },
+    "size": {
+      "field": "Revenue_Millions",
+      "type": "quantitative",
+      "title": "Revenue Generated ($M)",
+      "scale": {"range": [200, 2000]},
+      "legend": {"format": "s"}
+    },
+    "color": {
+      "field": "Role",
+      "type": "nominal",
+      "legend": {
+        "title": "Job Role",
+        "labelFontSize": 12,
+        "titleFontSize": 13
+      },
+      "scale": {"scheme": "category10"}
+    },
+    "opacity": {
+      "condition": {"param": "hover", "value": 0.9},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "Role", "type": "nominal", "title": "Profession"},
+      {"field": "Employees", "type": "quantitative", "title": "Workforce Size", "format": ","},
+      {"field": "Avg_Salary_AUD", "type": "quantitative", "format": "$,", "title": "Avg Salary"},
+      {"field": "Revenue_Millions", "type": "quantitative", "title": "Revenue Contribution ($M)"}
+    ]
+  }
+}
