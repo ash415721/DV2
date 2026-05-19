@@ -1,0 +1,37 @@
+State,Year,Industry_Value
+New South Wales,2018,480
+New South Wales,2019,520
+New South Wales,2020,590
+New South Wales,2021,680
+New South Wales,2022,750
+New South Wales,2023,820
+Victoria,2018,390
+Victoria,2019,430
+Victoria,2020,490
+Victoria,2021,590
+Victoria,2022,650
+Victoria,2023,710
+Queensland,2018,140
+Queensland,2019,160
+Queensland,2020,180
+Queensland,2021,210
+Queensland,2022,230
+Queensland,2023,260
+South Australia,2018,70
+South Australia,2019,80
+South Australia,2020,95
+South Australia,2021,120
+South Australia,2022,140
+South Australia,2023,160
+Western Australia,2018,55
+Western Australia,2019,60
+Western Australia,2020,65
+Western Australia,2021,75
+Western Australia,2022,80
+Western Australia,2023,85
+Tasmania,2018,12
+Tasmania,2019,13
+Tasmania,2020,14
+Tasmania,2021,15
+Tasmania,2022,17
+Tasmania,2023,19
