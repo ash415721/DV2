@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "The Five-Year Boom: Historical PDV Expenditure",
+    "subtitle": "Tracking the influx of foreign capital over time (Unit: $M)",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 15
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/historical_spend.csv"
+  },
+  "mark": {
+    "type": "area",
+    "line": {"color": "white", "size": 1},
+    "opacity": 0.85
+  },
+  "encoding": {
+    "x": {
+      "field": "Financial_Year",
+      "type": "nominal",
+      "title": "Financial Year",
+      "axis": {"labelAngle": 0, "labelFontSize": 12}
+    },
+    "y": {
+      "field": "Spend_Millions",
+      "type": "quantitative",
+      "title": "Total Spend (Millions AUD)",
+      "stack": "zero",
+      "axis": {"grid": true, "labelFontSize": 12}
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Foreign", "Domestic"],
+        "range": ["#e74c3c", "#3498db"]
+      },
+      "legend": {"title": "Capital Origin", "orient": "top-left"}
+    },
+    "tooltip": [
+      {"field": "Financial_Year", "type": "nominal", "title": "Year"},
+      {"field": "Category", "type": "nominal", "title": "Source"},
+      {"field": "Spend_Millions", "type": "quantitative", "title": "Spend ($M)"}
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 300,
+  "title": {
+    "text": "Production Matrix: Specialization by State",
+    "subtitle": "Density of projects across different media formats",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 15
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/production_heatmap.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 4
+  },
+  "encoding": {
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "title": null,
+      "axis": {"labelFontSize": 12, "labelPadding": 10}
+    },
+    "x": {
+      "field": "Format",
+      "type": "nominal",
+      "title": "Media Format",
+      "axis": {"labelAngle": -45, "labelFontSize": 12, "titlePadding": 15}
+    },
+    "color": {
+      "field": "Project_Count",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "legend": {"title": "No. of Projects"}
+    },
+    "tooltip": [
+      {"field": "State", "type": "nominal", "title": "State"},
+      {"field": "Format", "type": "nominal", "title": "Format"},
+      {"field": "Project_Count", "type": "quantitative", "title": "Project Count"}
+    ]
+  },
+  "config": {
+    "axis": {"grid": false, "domain": false}
+  }
+}
