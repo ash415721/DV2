@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Evolution of Post-Production Value by State (2018-2023)",
+  "width": 600,
+  "height": 450,
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 2018,
+        "max": 2023,
+        "step": 1,
+        "name": "Time Slider (Year): "
+      }
+    },
+    {
+      "name": "zoom_level",
+      "value": 700,
+      "bind": {
+        "input": "range",
+        "min": 500,
+        "max": 4000,
+        "step": 100,
+        "name": "Zoom Level: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [133, -28],
+      "bind": {
+        "input": "select",
+        "options": [
+          [133, -28],
+          [151.2, -33.8],
+          [144.9, -37.8],
+          [153.0, -27.4]
+        ],
+        "labels": ["Whole Australia", "Sydney (NSW)", "Melbourne (VIC)", "Brisbane (QLD)"],
+        "name": "Map Centre: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "center": {"expr": "center_to"},
+    "scale": {"expr": "zoom_level"}
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ecf0f1",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/state_evolution.csv"
+      },
+      "transform": [
+        {"filter": "datum.Year == Year_selection"},
+        {
+          "lookup": "State",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+              "format": {"type": "json", "property": "features"}
+            },
+            "key": "properties.STATE_NAME"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1.5},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "Industry_Value",
+          "type": "quantitative",
+          "scale": {"scheme": "purples", "domain": [0, 850]},
+          "title": "Industry Value ($M)"
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "quantitative", "title": "Year"},
+          {"field": "Industry_Value", "type": "quantitative", "title": "Value ($M)"}
+        ]
+      }
+    }
+  ]
+}
