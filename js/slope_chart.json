@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 450,
+  "title": {
+    "text": "Post-Production Industry Growth Trajectory (2015-16 vs 2021-22)",
+    "subtitle": "NSW and Victoria establish significant leads over five years (Unit: $M)",
+    "fontSize": 18,
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "offset": 20
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ash415721/DV2/refs/heads/main/pdv_states.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelFontSize": 15,
+        "labelPadding": 10,
+        "domain": false,
+        "ticks": false,
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": null,
+      "axis": null
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": ["New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", "Tasmania"],
+        "range": ["#2980b9", "#27ae60", "#f39c12", "#8e44ad", "#e67e22", "#7f8c8d"]
+      }
+    },
+    "detail": {
+      "field": "State"
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 4}
+    },
+    {
+      "mark": {"type": "circle", "size": 120, "opacity": 1}
+    },
+    {
+      "mark": {
+        "type": "text", 
+        "align": "right", 
+        "dx": -15, 
+        "fontSize": 13, 
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"field": "State"},
+        "opacity": {
+          "condition": {"test": "datum.Year == '2015-16'", "value": 1},
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text", 
+        "align": "left", 
+        "dx": 15, 
+        "fontSize": 13
+      },
+      "encoding": {
+        "text": {"field": "Value"},
+        "color": {"value": "black"}
+      }
+    }
+  ]
+}
