@@ -1,0 +1,13 @@
+Studio_Tier,Cost_Component,Percentage
+Global Majors,Labor (Salaries),45
+Global Majors,Hardware & Cloud Rendering,35
+Global Majors,Facility Overhead,15
+Global Majors,Admin & Marketing,5
+Mid-Sized Studios,Labor (Salaries),60
+Mid-Sized Studios,Hardware & Cloud Rendering,20
+Mid-Sized Studios,Facility Overhead,10
+Mid-Sized Studios,Admin & Marketing,10
+Boutique / Independent,Labor (Salaries),75
+Boutique / Independent,Hardware & Cloud Rendering,10
+Boutique / Independent,Facility Overhead,5
+Boutique / Independent,Admin & Marketing,10
